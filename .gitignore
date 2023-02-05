@@ -1,0 +1,6 @@
+*.o
+.vscode
+*.dSYM
+.DS_Store
+test
+.gitignore
