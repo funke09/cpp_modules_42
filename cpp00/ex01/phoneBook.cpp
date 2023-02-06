@@ -10,31 +10,14 @@ std::string Contact::getNumber()
     return this->number;
 }
 
-void ft_add(Contact all_info[])
+std::string Contact::getLastName()
 {
-    std::cout << "enter name: ";
-    std::string name;
-    std::cin >> name;
-    std::cout << "enter number: ";
-    std::string number;
-    std::cin >> number;
-    std::cout << "enter last name: ";
-    std::string last_name;
-    std::cin >> last_name;
-    std::cout << "enter nickname: ";
-    std::string nickname;
-    std::cin >> nickname;
-    Contact contact(name, number, last_name, nickname);
-    // int size = *(&all_info + 1) - all_info;
+    return this->last_name;
+}
 
-    // printf("%d", size);
-    if (size < 8)
-    {
-        all_info[size] = contact;
-        std::cout << "contact added" << std::endl;
-    }
-    else
-        std::cout << "phonebook is full" << std::endl;
+std::string Contact::getNickname()
+{
+    return this->nickname;
 }
 
 
@@ -46,7 +29,7 @@ int main(int ac, char **av)
     std::string name;
     
     Contact info[8];
-    // Contact contact("name", "number", "last_name", "nickname");
+    Contact contact("name", "number", "last_name", "nickname");
 
    if(ac != 1)
    {
@@ -60,20 +43,9 @@ int main(int ac, char **av)
             std::cout << "enter one of three command:  ADD - SEARCH - EXIT  ";
             std::cin >> command;
             if (command.compare("ADD") == 0)
-            {
-                std::cout << "add" << std::endl;
                 ft_add(info);
-            }
             else if (command.compare("SEARCH") == 0)
-            {
-                std::cout << "enter some information about contact:" << std::endl;
-                std::string info;
-                std::cin >> info;
-                // if(name.compare(info) == 0)
-                //     std::cout << "name: " << contact.getName() << std::endl;
-                // else
-                //     std::cout << "no such contact" << std::endl;
-            }
+                ft_search(info);
             else if (command.compare("EXIT") == 0)
             {
                 std::cout << "exit" << std::endl;
