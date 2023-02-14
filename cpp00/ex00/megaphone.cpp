@@ -1,78 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   MegaPhone.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/14 23:51:25 by zcherrad          #+#    #+#             */
+/*   Updated: 2023/02/14 23:51:26 by zcherrad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 
-
-class megaphone
+int main(int ac, char **av)
 {
-    private:
-        std::string _message;
-        /* data */
-    public:
-        megaphone(char *);
-        megaphone(void);
-        void loud(void);
-        void printMessage(void);
-        ~megaphone();
-};
-
-
-    megaphone::megaphone(char *msg)
-    {
-        // std::cout<< "test" << std::endl;
-        _message = msg;
-
-    }
-
-
-    megaphone::megaphone()
-    {
-        std::getline(std::cin, _message);
-    }
-
-    megaphone::~megaphone()
-    {
-    }
-
-    void megaphone::loud()
-    {
-        char *tmp;
-
-        tmp = (char*)_message.c_str();
-        while (*tmp)
-        {
-                if (*tmp >= 'a' && *tmp <= 'z')
-                    std::cout << (char)(*tmp - 32);
-                else std::cout << *tmp;
-                tmp++;
-        }
-       std::cout << std::endl;
-    }
-    void megaphone::printMessage()
-    {
-       std::cout << _message << std::endl;
-       
-    }
-
-
-int main(int ac, char **av) {
-    // char str[100];
-    char *msg;
-
     if (ac > 1)
     {
-        msg = (char *)av[1];
-        megaphone mega(msg);
-
-        mega.loud();
-        megaphone test;
-        test.printMessage();
-        
+        for (int i = 1; i < ac; i++)
+        {
+            for (int j = 0; av[i][j]; j++)
+            {
+                std::cout << (char)toupper(av[i][j]);
+            }
+                if (i < ac - 1)
+				    std::cout << ' ';
+        }
+        std::cout << std::endl;
     }
-
-
-
-
-    // std::cout << "Hello, World!" << std::endl;
-    // std::cin >> str;
-    // std::cout << "what up [" << str << "] ?" << std::endl;
+    else
+        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
     return 0;
 }

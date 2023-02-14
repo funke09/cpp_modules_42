@@ -1,64 +1,139 @@
-#include "phone.hpp"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/14 23:51:09 by zcherrad          #+#    #+#             */
+/*   Updated: 2023/02/14 23:51:10 by zcherrad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-std::string Contact::getName()
+#include "PhoneBook.hpp"
+
+PhoneBook::PhoneBook(void)
 {
-    return this->name;
+    contactCount = 0;
 }
 
-std::string Contact::getNumber()
+PhoneBook::~PhoneBook(void)
 {
-    return this->number;
 }
 
-std::string Contact::getLastName()
+PhoneBook::PhoneBook(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret)
 {
-    return this->last_name;
+   
+    if (contactCount < MAX_CONTACTS) 
+    {
+        contacts[contactCount] = Contact(firstName, lastName, nickname, phoneNumber, darkestSecret);
+        contactCount++;
+    }
 }
 
-std::string Contact::getNickname()
+void PhoneBook::addContact(void)
 {
-    return this->nickname;
-}
+    std::string firstName;
+    std::string lastName;
+    std::string nickname;
+    std::string phoneNumber;
+    std::string darkestSecret;
 
-
-int main(int ac, char **av)
-{
-    (void)av;
-    std::string all_info;
-    std::string command;
-    std::string name;
+    std::cout << "**** ADDING CONTACT ****" << std::endl;
+    std::cout << "First name: ";
+    std::getline(std::cin, firstName);
+    std::cout << "Last name: ";
+    std::getline(std::cin, lastName);
+    std::cout << "Nickname: ";
+    std::getline(std::cin, nickname);
+    std::cout << "Phone number: ";
+    std::getline(std::cin, phoneNumber);
+    std::cout << "Darkest secret: ";
+    std::getline(std::cin, darkestSecret);
     
-    Contact info[8];
-    Contact contact("name", "number", "last_name", "nickname");
-
-   if(ac != 1)
-   {
-       std::cout << "Usage: ./phoneBook " << std::endl;
-       return 1;
-   }
-   else
-   {
-        while (1)
+    // If the array is not full, add the new contact
+    if (contactCount < MAX_CONTACTS) 
+    {
+        contacts[contactCount] = Contact(firstName, lastName, nickname, phoneNumber, darkestSecret);
+        contactCount++;
+    }
+    // If the array is full, remove the oldest contact, add the new one and shift the remaining contacts
+    else
+    {
+        for (int i = 1; i < MAX_CONTACTS; i++) 
         {
-            std::cout << "enter one of three command:  ADD - SEARCH - EXIT  ";
-            std::cin >> command;
-            if (command.compare("ADD") == 0)
-                ft_add(info);
-            else if (command.compare("SEARCH") == 0)
-                ft_search(info);
-            else if (command.compare("EXIT") == 0)
-            {
-                std::cout << "exit" << std::endl;
-                return 0;
-            }
-            else
-            {
-                std::cout << "wrong command" << std::endl;
-            }
+            contacts[i-1] = contacts[i];
         }
+        contacts[MAX_CONTACTS-1] = Contact(firstName, lastName, nickname, phoneNumber, darkestSecret);
+    }
+}
 
-   }
+void PhoneBook::printContact(int idex) 
+{
+    std::cout << "First name: " << contacts[idex].getFirstName() << std::endl;
+    std::cout << "Last name: " << contacts[idex].getLastName() << std::endl;
+    std::cout << "Nickname: " << contacts[idex].getNickname() << std::endl;
+    std::cout << "Phone number: " << contacts[idex].getPhoneNumber() << std::endl;
+    std::cout << "Darkest secret: " << contacts[idex].getDarkestSecret() << std::endl;
 
 }
 
-// a pro
+
+void PhoneBook::searchContact(void)
+{
+    std::string input;
+    int index = 0;
+
+    std::cout << "**** SEARCHING CONTACT ****" << std::endl;
+    if(contactCount == 0)
+    {
+        std::cout << "### No contacts to display ###" << std::endl;
+        return;
+    }
+    std::cout << "Enter the index of the contact you want to display: " << std::endl;
+    std::cout << "     INDEX| FIRSTNAME| LASTNAME|  NICKNAME| PHONENUMBER| DARKESTSECRET" << std::endl;
+    for (int i = 0; i < MAX_CONTACTS; i++)
+    {
+        std::cout << "         " << i << "|";
+        if (contacts[i].getFirstName().length() > 10)
+            std::cout << " " << contacts[i].getFirstName().substr(0, 9) << "." << "|";
+        else
+            std::cout << " " << contacts[i].getFirstName() << std::string(10 - contacts[i].getFirstName().length(), ' ') << "|";
+        if (contacts[i].getLastName().length() > 10)
+            std::cout << " " << contacts[i].getLastName().substr(0, 9) << "." << "|";
+        else
+            std::cout << " " << contacts[i].getLastName() << std::string(10 - contacts[i].getLastName().length(), ' ') << "|";
+        if (contacts[i].getNickname().length() > 10)
+            std::cout << " " << contacts[i].getNickname().substr(0, 9) << "." << "|";
+        else
+            std::cout << " " << contacts[i].getNickname() << std::string(10 - contacts[i].getNickname().length(), ' ') << "|";
+        if (contacts[i].getPhoneNumber().length() > 10)
+            std::cout << " " << contacts[i].getPhoneNumber().substr(0, 9) << "." << "|";
+        else
+            std::cout << " " << contacts[i].getPhoneNumber() << std::string(10 - contacts[i].getPhoneNumber().length(), ' ') << "|";
+        if (contacts[i].getDarkestSecret().length() > 10)
+            std::cout << " " << contacts[i].getDarkestSecret().substr(0, 9) << "." << "|";
+        else
+            std::cout << " " << contacts[i].getDarkestSecret() << std::string(10 - contacts[i].getDarkestSecret().length(), ' ') << "|";
+        std::cout << std::endl;
+    }
+    std::getline(std::cin, input);
+    if(input[0] && isdigit(input[0]))
+    {
+        index = std::stoi(input);
+        if (index >= 0 && index < contactCount)
+        {
+            std::cout << "here is the contact:" << std::endl;
+            printContact(index);
+        }
+        else
+        {
+            std::cout << "Out of range !!" << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Invalid index" << std::endl;
+    }
+        
+}

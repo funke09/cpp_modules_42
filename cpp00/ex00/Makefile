@@ -1,7 +1,19 @@
-NAME = test
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/02/14 23:51:28 by zcherrad          #+#    #+#              #
+#    Updated: 2023/02/14 23:51:29 by zcherrad         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = MegaPhone
 SRC = megaphone.cpp
 OBJ = $(SRC:.cpp=.o)
-HEADER = #whatever.hpp
+HEADER = MegaPhone.hpp
 FLAGS = c++ -Wall -Wextra -Werror -std=c++98 
 
 all: $(NAME)

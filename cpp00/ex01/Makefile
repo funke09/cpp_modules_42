@@ -1,19 +1,34 @@
-NAME = phoneBook
-SRC = phoneBook.cpp
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/02/14 23:51:11 by zcherrad          #+#    #+#              #
+#    Updated: 2023/02/14 23:51:12 by zcherrad         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = PhoneBook
+SRC = main.cpp Contact.cpp PhoneBook.cpp 
 OBJ = $(SRC:.cpp=.o)
-HEADERS = phone.hpp
-FLAGS = c++ -Wall -Wextra -Werror -std=c++98
+CC = c++
+CFLAGS = -Wall -Wextra -Werror -std=c++98
+RM = rm -f
 
-all: $(NAME)
-	$(FLAGS) $(SRC) -o $(NAME)
+all:$(NAME) 
 
-%.o: %.cpp $(HEADERS)
-	$(FLAGS) -c $< -o $@
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	$(RM) $(OBJ)
 
 fclean: clean
-	rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
