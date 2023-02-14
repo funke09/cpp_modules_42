@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:51:09 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/14 23:51:10 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/15 00:23:30 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,20 @@ void PhoneBook::addContact(void)
 
     std::cout << "**** ADDING CONTACT ****" << std::endl;
     std::cout << "First name: ";
-    std::getline(std::cin, firstName);
+    if(!std::getline(std::cin, firstName))
+        return;
     std::cout << "Last name: ";
-    std::getline(std::cin, lastName);
+    if(!std::getline(std::cin, lastName))
+        return;
     std::cout << "Nickname: ";
-    std::getline(std::cin, nickname);
+    if(!std::getline(std::cin, nickname))
+        return;
     std::cout << "Phone number: ";
-    std::getline(std::cin, phoneNumber);
+    if(!std::getline(std::cin, phoneNumber))
+        return;
     std::cout << "Darkest secret: ";
-    std::getline(std::cin, darkestSecret);
+    if(!std::getline(std::cin, darkestSecret))
+        return;
     
     // If the array is not full, add the new contact
     if (contactCount < MAX_CONTACTS) 
@@ -94,7 +99,7 @@ void PhoneBook::searchContact(void)
     std::cout << "     INDEX| FIRSTNAME| LASTNAME|  NICKNAME| PHONENUMBER| DARKESTSECRET" << std::endl;
     for (int i = 0; i < MAX_CONTACTS; i++)
     {
-        std::cout << "         " << i << "|";
+        std::cout << "         " << i + 1 << "|";
         if (contacts[i].getFirstName().length() > 10)
             std::cout << " " << contacts[i].getFirstName().substr(0, 9) << "." << "|";
         else
