@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:51:21 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/14 23:51:22 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/15 19:30:32 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ Contact::~Contact()
 
 Contact::Contact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret)
 {
-    this->FirstName = firstName;
-    this->LastName = lastName;
-    this->Nickname = nickname;
-    this->PhoneNumber = phoneNumber;
-    this->DarkestSecret = darkestSecret;
+        this->FirstName = firstName;
+        this->LastName = lastName;
+        this->Nickname = nickname;
+        this->PhoneNumber = phoneNumber;
+        this->DarkestSecret = darkestSecret;
 }
 
 void Contact::setFirstName(std::string FirstName)

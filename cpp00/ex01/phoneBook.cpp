@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 23:51:09 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/15 00:23:30 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/15 20:15:14 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,31 @@ void PhoneBook::addContact(void)
     // If the array is not full, add the new contact
     if (contactCount < MAX_CONTACTS) 
     {
-        contacts[contactCount] = Contact(firstName, lastName, nickname, phoneNumber, darkestSecret);
-        contactCount++;
-    }
-    // If the array is full, remove the oldest contact, add the new one and shift the remaining contacts
-    else
-    {
-        for (int i = 1; i < MAX_CONTACTS; i++) 
+        if(!firstName.empty() && !lastName.empty() && !nickname.empty() && !phoneNumber.empty() && !darkestSecret.empty())
         {
-            contacts[i-1] = contacts[i];
+            contacts[contactCount] = Contact(firstName, lastName, nickname, phoneNumber, darkestSecret);
+            contactCount++;
         }
-        contacts[MAX_CONTACTS-1] = Contact(firstName, lastName, nickname, phoneNumber, darkestSecret);
+        else 
+        {
+            std::cout << "### ERROR: All fields must be filled ###" << std::endl;
+        }
     }
+    // If the array is full, remove the oldest contact and replace it with the new one
+  else
+    {
+    // Replace the oldest contact with the new one
+        int oldestIndex = (contactCount) % MAX_CONTACTS;
+        contacts[oldestIndex] = Contact(firstName, lastName, nickname, phoneNumber, darkestSecret);
+    }
+
 }
 
 void PhoneBook::printContact(int idex) 
 {
+    // int index = idex - 1;
+    printf("idex = %d\n", idex);
+    std::cout << "**** DISPLAYING CONTACT ****" << std::endl;
     std::cout << "First name: " << contacts[idex].getFirstName() << std::endl;
     std::cout << "Last name: " << contacts[idex].getLastName() << std::endl;
     std::cout << "Nickname: " << contacts[idex].getNickname() << std::endl;
@@ -87,7 +96,7 @@ void PhoneBook::printContact(int idex)
 void PhoneBook::searchContact(void)
 {
     std::string input;
-    int index = 0;
+    int index = 1;
 
     std::cout << "**** SEARCHING CONTACT ****" << std::endl;
     if(contactCount == 0)
@@ -96,7 +105,7 @@ void PhoneBook::searchContact(void)
         return;
     }
     std::cout << "Enter the index of the contact you want to display: " << std::endl;
-    std::cout << "     INDEX| FIRSTNAME| LASTNAME|  NICKNAME| PHONENUMBER| DARKESTSECRET" << std::endl;
+    std::cout << "     INDEX|  FIRSTNAME|   LASTNAME|   NICKNAME|   PHNUMBER|    DSECRET|" << std::endl;
     for (int i = 0; i < MAX_CONTACTS; i++)
     {
         std::cout << "         " << i + 1 << "|";
@@ -126,9 +135,8 @@ void PhoneBook::searchContact(void)
     if(input[0] && isdigit(input[0]))
     {
         index = std::stoi(input);
-        if (index >= 0 && index < contactCount)
+        if (index >= 1 && index < contactCount)
         {
-            std::cout << "here is the contact:" << std::endl;
             printContact(index);
         }
         else
