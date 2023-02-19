@@ -11,7 +11,7 @@ void Harl::complain( std::string level )
     else if (level == "error")
         error();
     else
-        std::cout << "I can't do anything with " << level << std::endl;
+        std::cout << "[Probably complaining about insignificant problems] " << std::endl;
 }
 
 void Harl::debug( void )
