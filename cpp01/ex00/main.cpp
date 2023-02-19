@@ -1,10 +1,16 @@
 #include "Zombie.hpp"
 
-int main()
+int main(int ac, char **av)
 {
-    Zombie *zombie = newZombie("");
+    (void)av;
+    if (ac != 1)
+    {
+        std::cout << "Usage: ./Zombie" << std::endl;
+        return (1);
+    }
+    Zombie *zombie = newZombie("alo");
     zombie->announce();
-    randomChump("");
+    randomChump("new");
     delete zombie;
     return (0);
 }
