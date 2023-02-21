@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:11:34 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/21 03:04:47 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/21 15:36:57 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 #include <string>
 
 void replaceAll(std::string& str, const std::string& from, const std::string& to) {
-    if (str.empty()) {
-        std::cerr << "Error: empty string to replace" << std::endl;
-        return;
-    }
-
     size_t startPos = 0;
     while ((startPos = str.find(from, startPos)) != std::string::npos) {
         str.erase(startPos, from.length());
@@ -43,7 +38,7 @@ int main(int argc, char* argv[]) {
 
     // Open input file
     std::ifstream inputFile(filename);
-    if (!inputFile) {
+    if (!inputFile.is_open()) {
         std::cerr << "Error: could not open input file: " << filename << std::endl;
         return 1;
     }
