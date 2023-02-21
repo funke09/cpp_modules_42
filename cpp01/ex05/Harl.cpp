@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:11:41 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/19 22:11:43 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:32:33 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,35 @@
 
 void Harl::complain( std::string level )
 {
-    if (level == "debug")
-        debug();
-    else if (level == "info")
-        info();
-    else if (level == "warning")
-        warning();
-    else if (level == "error")
-        error();
-    else
-        std::cout << "I can't do anything with " << level << std::endl;
+    typedef void (Harl::*harl)();
+    
+    harl tab[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+
+    char    str[4][10] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    int i = 0;
+    while (i < 4)
+    {
+        if (level == str[i])
+            break ;
+        i++;
+    }
+    switch (i)
+    {
+    case 0 :
+       (this->*tab[i])();
+        break ;
+    case 1 :
+        (this->*tab[i])();
+        break ;
+    case 2 :
+        (this->*tab[i])();
+        break ;
+    case 3 :
+        (this->*tab[i])();
+        break ;
+    default :
+        std::cout << "[Probably complaining about insignificant problems] " << std::endl;
+    }
 }
 
 void Harl::debug( void )

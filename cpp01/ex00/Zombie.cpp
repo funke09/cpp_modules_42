@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:10:45 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/19 22:10:46 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:41:27 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Zombie::Zombie()
 {
-    std::cout << "Zombie created" << std::endl;
+    std::cout  << "Zombie created" << std::endl;
 }
 
 Zombie::~Zombie()
@@ -32,5 +32,5 @@ void Zombie::announce()
 
 void Zombie::setName(std::string name)
 {
-    Name = name;
+    Name  = name;
 }

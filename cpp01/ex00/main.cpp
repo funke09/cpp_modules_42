@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:10:33 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/19 22:10:35 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:42:43 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int main(int ac, char **av)
     Zombie *zombie = newZombie("alo");
     zombie->announce();
     randomChump("new");
+    Zombie zombie2;
+    zombie2.setName("stack zombie");
+    zombie2.announce();
     delete zombie;
     return (0);
 }

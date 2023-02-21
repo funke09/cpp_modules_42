@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:11:47 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/19 22:11:49 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/21 02:33:13 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int main(int ac, char **av)
         return 1;
     }
     Harl harl;
-    harl.complain("debug");
-    harl.complain("info");
-    harl.complain("warning");
-    harl.complain("error");
     harl.complain("something else");
+    harl.complain("DEBUG");
+    harl.complain("INFO");
+    harl.complain("WARNING");
+    harl.complain("ERROR");
     return 0;
 }

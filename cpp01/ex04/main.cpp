@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:11:34 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/19 22:11:35 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/21 03:04:47 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,24 @@
 #include <string>
 
 void replaceAll(std::string& str, const std::string& from, const std::string& to) {
-    size_t start_pos = 0;
-    while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
-        str.replace(start_pos, from.length(), to);
-        start_pos += to.length();
+    if (str.empty()) {
+        std::cerr << "Error: empty string to replace" << std::endl;
+        return;
+    }
+
+    size_t startPos = 0;
+    while ((startPos = str.find(from, startPos)) != std::string::npos) {
+        str.erase(startPos, from.length());
+        str.insert(startPos, to);
+        startPos += to.length();
     }
 }
+
 
 int main(int argc, char* argv[]) {
     // Ensure correct number of arguments
     if (argc != 4) {
-        std::cerr << "Usage: " << argv[0] << " <filename> <s1> <s2>\n";
+        std::cerr << "Usage: " << argv[0] << " <filename> <s1> <s2>" << std::endl;
         return 1;
     }
 
@@ -37,22 +44,31 @@ int main(int argc, char* argv[]) {
     // Open input file
     std::ifstream inputFile(filename);
     if (!inputFile) {
-        std::cerr << "Error: could not open input file: " << filename << "\n";
+        std::cerr << "Error: could not open input file: " << filename << std::endl;
         return 1;
     }
-
+    if(inputFile.peek() == std::ifstream::traits_type::eof())
+    {
+        std::cerr << "Error: empty file" << std::endl;
+        return 1;
+    }
     // Open output file
     std::ofstream outputFile(filename + ".replace");
     if (!outputFile) {
-        std::cerr << "Error: could not open output file: " << filename << ".replace\n";
+        std::cerr << "Error: could not open output file: " << filename << ".replace" << std::endl;
         return 1;
     }
 
     // Copy input file to output file, replacing s1 with s2
     std::string line;
     while (std::getline(inputFile, line)) {
+        // if file is empty
+        if (line.empty()) {
+            std::cerr << "Error: empty file" << std::endl;
+            return 1;
+        }
         replaceAll(line, s1, s2);
-        outputFile << line << "\n";
+        outputFile << line << std::endl;
     }
 
     // Close files

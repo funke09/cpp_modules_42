@@ -6,7 +6,7 @@
 #    By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/19 22:10:37 by zcherrad          #+#    #+#              #
-#    Updated: 2023/02/19 22:10:38 by zcherrad         ###   ########.fr        #
+#    Updated: 2023/02/20 18:43:58 by zcherrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,9 @@ NAME = Zombie
 
 SRC =  main.cpp Zombie.cpp randomChump.cpp newZombie.cpp
 
-CC = c++
+CXX = c++
 
-FLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
 RM = rm -f
 
@@ -25,10 +25,10 @@ LIB = Zombie.hpp
 OBJ = $(SRC:.cpp=.o)
 
 $(NAME): $(OBJ) $(LIB)
-	$(CC) $(OBJ) $(FLAGS) -o $(NAME)
+	$(CXX) $(OBJ) $(CXXFLAGS) -o $(NAME)
 
 %.o : %.cpp $(LIB)
-	$(CC) $(FLAGS) -o $@ -c $<
+	$(CXX) $(CXXFLAGS) -o $@ -c $<
 
 all : $(NAME)
 

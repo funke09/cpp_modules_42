@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:10:47 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/19 22:10:49 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/20 18:36:41 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ class Zombie
 
     public:
         Zombie();
-        ~Zombie();
         void announce();
         void setName(std::string name);
+        ~Zombie();
 };
 
 Zombie* newZombie(std::string name);
