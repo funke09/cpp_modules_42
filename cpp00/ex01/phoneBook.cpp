@@ -40,15 +40,19 @@ int main(int ac, char **av)
    {
         while (1)
         {
-            std::cout << "enter one of three command:  ADD - SEARCH - EXIT  ";
-            std::cin >> command;
+    
+            std::cout << "enter one of three command:  ADD - SEARCH - EXIT " << std::endl;
+            if(!(std::cin >> command))
+                return(1);
+            if(!std::cin.good())
+                exit(1);
             if (command.compare("ADD") == 0)
                 ft_add(info);
             else if (command.compare("SEARCH") == 0)
                 ft_search(info);
             else if (command.compare("EXIT") == 0)
             {
-                std::cout << "exit" << std::endl;
+                std::cout << "thella abogos/a" << std::endl;
                 return 0;
             }
             else
@@ -56,9 +60,5 @@ int main(int ac, char **av)
                 std::cout << "wrong command" << std::endl;
             }
         }
-
    }
-
 }
-
-// a pro

@@ -2,6 +2,8 @@
 #define PHONE_H
 
 #include <iostream>
+#include <strstream>
+#include <streambuf>
 
 class Contact
 {
@@ -54,18 +56,24 @@ unsigned int array_size(Contact *all_info)
 
 void ft_add(Contact *all_info)
 {
+    std::cout << "ADD CONTACT" << std::endl;
+
     std::cout << "enter name: ";
     std::string name;
-    std::cin >> name;
+    if(!(std::cin >> name))
+        return ;
     std::cout << "enter number: ";
     std::string number;
-    std::cin >> number;
+    if(!(std::cin >> number))
+        return ;
     std::cout << "enter last name: ";
     std::string last_name;
-    std::cin >> last_name;
+    if(!(std::cin >> last_name))
+        return ;
     std::cout << "enter nickname: ";
     std::string nickname;
-    std::cin >> nickname;
+    if(!(std::cin >> nickname))
+        return ;
     Contact contact(name, number, last_name, nickname);
     unsigned int size = array_size(all_info);
     if (size < 8)
@@ -90,13 +98,15 @@ void ft_add(Contact *all_info)
 
 void ft_search(Contact *all_info)
 {
+
+    std::cout << "all contacts you have :" << std::endl;
     unsigned int size = array_size(all_info);
     if (size == 0)
     {
-        std::cout << "phonebook is empty" << std::endl;
+        std::cout << "phonebook is empty :(" << std::endl;
         return ;
     }
-    std::cout << "     index|first name| last name|  nickname" << std::endl;
+    std::cout << "     index| first name| last name|  nickname" << std::endl;
     for (unsigned int i = 0; i < size; i++)
     {
         std::cout << "         " << i << "|";
@@ -114,9 +124,10 @@ void ft_search(Contact *all_info)
             std::cout << all_info[i].getNickname() << std::string(10 - all_info[i].getNickname().length(), ' ') << "|";
         std::cout << std::endl;
     }
-    std::cout << "enter index of contact: ";
+    std::cout << "enter index of contact you wanna see: ";
     unsigned int index;
-    std::cin >> index;
+    if(!(std::cin >> index))
+        return ;
     if (index < size)
     {
         std::cout << "name: " << all_info[index].getName() << std::endl;
