@@ -34,7 +34,6 @@ Fixed::Fixed(const float Fixed)
 
 int Fixed::toInt( void ) const
 {
-    std::cout << "toInt member function called" << std::endl;
     return (this->FixedPoint >> this->BitCount);
 }
 
