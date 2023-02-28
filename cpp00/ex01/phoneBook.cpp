@@ -60,6 +60,30 @@ void PhoneBook::addContact(void)
     {
         if(!firstName.empty() && !lastName.empty() && !nickname.empty() && !phoneNumber.empty() && !darkestSecret.empty())
         {
+<<<<<<< HEAD
+    
+            std::cout << "enter one of three command:  ADD - SEARCH - EXIT " << std::endl;
+            if(!(std::cin >> command))
+                return(1);
+            if(!std::cin.good())
+                exit(1);
+            if (command.compare("ADD") == 0)
+                ft_add(info);
+            else if (command.compare("SEARCH") == 0)
+                ft_search(info);
+            else if (command.compare("EXIT") == 0)
+            {
+                std::cout << "thella abogos/a" << std::endl;
+                return 0;
+            }
+            else
+            {
+                std::cout << "wrong command" << std::endl;
+            }
+        }
+   }
+}
+=======
             contacts[contactCount] = Contact(firstName, lastName, nickname, phoneNumber, darkestSecret);
             contactCount++;
         }
@@ -138,3 +162,4 @@ void PhoneBook::searchContact(void)
     }
         
 }
+>>>>>>> a5faa3851cc0694f6e589998527b990f13e2b965
