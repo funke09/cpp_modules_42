@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MegaPhone.cpp                                      :+:      :+:    :+:   */
+/*   HumanB.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 23:51:25 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/16 12:08:08 by zcherrad         ###   ########.fr       */
+/*   Created: 2023/02/19 22:11:17 by zcherrad          #+#    #+#             */
+/*   Updated: 2023/02/19 22:11:19 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "HumanB.hpp"
 #include <iostream>
 
-int main(int ac, char **av)
-{
-    if (ac > 1)
-    {
-        for (int i = 1; i < ac; i++)
-        {
-            for (int j = 0; av[i][j]; j++)
-            {
-                std::cout << (char)toupper(av[i][j]);
-            }
-        }
-        std::cout << std::endl;
-    }
+HumanB::HumanB(std::string name) : _name(name), _weapon(NULL) {}
+
+void HumanB::setWeapon(Weapon& weapon) {
+    _weapon = &weapon;
+}
+
+void HumanB::attack() const {
+    std::cout << _name << " attacks with ";
+    if (_weapon)
+        std::cout << "their " << _weapon->getType();
     else
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-    return 0;
+        std::cout << "no weapon";
+    std::cout << std::endl;
 }

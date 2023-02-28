@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MegaPhone.cpp                                      :+:      :+:    :+:   */
+/*   HumanB.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 23:51:25 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/16 12:08:08 by zcherrad         ###   ########.fr       */
+/*   Created: 2023/02/19 22:11:20 by zcherrad          #+#    #+#             */
+/*   Updated: 2023/02/20 18:59:47 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
+#ifndef HUMANB_H
+#define HUMANB_H
 
-int main(int ac, char **av)
-{
-    if (ac > 1)
-    {
-        for (int i = 1; i < ac; i++)
-        {
-            for (int j = 0; av[i][j]; j++)
-            {
-                std::cout << (char)toupper(av[i][j]);
-            }
-        }
-        std::cout << std::endl;
-    }
-    else
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-    return 0;
-}
+#include "Weapon.hpp"
+#include <string>
+
+class HumanB {
+private:
+    std::string _name;
+    Weapon* _weapon;
+public:
+    HumanB(std::string name);
+    void setWeapon(Weapon& weapon);
+    void attack() const;
+};
+
+#endif

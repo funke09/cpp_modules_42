@@ -5,31 +5,33 @@
 #                                                     +:+ +:+         +:+      #
 #    By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/14 23:51:11 by zcherrad          #+#    #+#              #
-#    Updated: 2023/02/15 19:08:34 by zcherrad         ###   ########.fr        #
+#    Created: 2023/02/19 22:11:37 by zcherrad          #+#    #+#              #
+#    Updated: 2023/02/19 22:11:40 by zcherrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = PhoneBook
-SRC = main.cpp Contact.cpp PhoneBook.cpp 
-OBJ = $(SRC:.cpp=.o)
+NAME = a.out
+
 CC = c++
-HEADER = Contact.hpp PhoneBook.hpp
-CFLAGS = -Wall -Wextra -Werror -std=c++98
-RM = rm -f
 
-all:$(NAME) 
+FLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+SRCS = main.cpp
 
-%.o: %.cpp $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+OBJS = $(SRCS:.cpp=.o)
+
+(NAME): $(OBJS)
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+
+%.o: %.cpp
+	$(CC) $(FLAGS) -c $< -o $@
+
+all: $(NAME)
 
 clean:
-	$(RM) $(OBJ)
+	rm -f $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -f $(NAME)
 
 re: fclean all

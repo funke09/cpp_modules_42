@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   MegaPhone.cpp                                      :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 23:51:25 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/16 12:08:08 by zcherrad         ###   ########.fr       */
+/*   Created: 2023/02/19 22:11:44 by zcherrad          #+#    #+#             */
+/*   Updated: 2023/02/19 22:11:46 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HARL_HPP
+#define HARL_HPP
+#include <string>
 #include <iostream>
 
-int main(int ac, char **av)
+class Harl
 {
-    if (ac > 1)
-    {
-        for (int i = 1; i < ac; i++)
-        {
-            for (int j = 0; av[i][j]; j++)
-            {
-                std::cout << (char)toupper(av[i][j]);
-            }
-        }
-        std::cout << std::endl;
-    }
-    else
-        std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
-    return 0;
-}
+    private:
+    void debug( void );
+    void info( void );
+    void warning( void );
+    void error( void );
+
+    public:
+    void complain( std::string level );
+
+};
+
+
+#endif

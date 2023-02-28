@@ -5,31 +5,37 @@
 #                                                     +:+ +:+         +:+      #
 #    By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/14 23:51:11 by zcherrad          #+#    #+#              #
-#    Updated: 2023/02/15 19:08:34 by zcherrad         ###   ########.fr        #
+#    Created: 2023/02/19 22:10:53 by zcherrad          #+#    #+#              #
+#    Updated: 2023/02/19 22:10:55 by zcherrad         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = PhoneBook
-SRC = main.cpp Contact.cpp PhoneBook.cpp 
-OBJ = $(SRC:.cpp=.o)
+NAME = Zombie
+
+SRC =  main.cpp Zombie.cpp zombieHorde.cpp
+
 CC = c++
-HEADER = Contact.hpp PhoneBook.hpp
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+
+FLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
+
 RM = rm -f
 
-all:$(NAME) 
+LIB = Zombie.hpp
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+OBJ = $(SRC:.cpp=.o)
 
-%.o: %.cpp $(HEADER)
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME): $(OBJ) $(LIB)
+	$(CC) $(OBJ) $(FLAGS) -o $(NAME)
+
+%.o : %.cpp $(LIB)
+	$(CC) $(FLAGS) -o $@ -c $<
+
+all : $(NAME)
 
 clean:
 	$(RM) $(OBJ)
 
-fclean: clean
-	$(RM) $(NAME)
+fclean:
+	$(RM) $(OBJ) $(NAME)
 
-re: fclean all
+re:    fclean all
