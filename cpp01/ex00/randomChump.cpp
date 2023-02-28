@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:10:42 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/19 22:10:44 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/22 04:21:17 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 void randomChump( std::string name )
 {
-    Zombie zombie;
-    if(name == "")
-        zombie.setName("stack zombie");
-    else
-        zombie.setName(name);
+    Zombie zombie(name);
     zombie.announce();
 }

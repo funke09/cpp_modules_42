@@ -6,9 +6,10 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:10:47 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/20 18:36:41 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/22 03:32:40 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
@@ -25,8 +26,8 @@ class Zombie
 
     public:
         Zombie();
+        Zombie(std::string _name);
         void announce();
-        void setName(std::string name);
         ~Zombie();
 };
 

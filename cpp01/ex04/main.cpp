@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:11:34 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/21 15:36:57 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:24:02 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@
 #include <string>
 
 void replaceAll(std::string& str, const std::string& from, const std::string& to) {
-    size_t startPos = 0;
-    while ((startPos = str.find(from, startPos)) != std::string::npos) {
-        str.erase(startPos, from.length());
-        str.insert(startPos, to);
-        startPos += to.length();
+    if(str != "" && from != "" && to != "")
+    {
+        size_t startPos = 0;
+        while ((startPos = str.find(from, startPos)) != std::string::npos) {
+            str.erase(startPos, from.length());
+            str.insert(startPos, to);
+            startPos += to.length();
+
+            }
     }
 }
 
 
-int main(int argc, char* argv[]) {
+int main(int argc, char **argv) {
     // Ensure correct number of arguments
     if (argc != 4) {
         std::cerr << "Usage: " << argv[0] << " <filename> <s1> <s2>" << std::endl;
@@ -57,11 +61,6 @@ int main(int argc, char* argv[]) {
     // Copy input file to output file, replacing s1 with s2
     std::string line;
     while (std::getline(inputFile, line)) {
-        // if file is empty
-        if (line.empty()) {
-            std::cerr << "Error: empty file" << std::endl;
-            return 1;
-        }
         replaceAll(line, s1, s2);
         outputFile << line << std::endl;
     }

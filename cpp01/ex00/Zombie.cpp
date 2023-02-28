@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:10:45 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/20 18:41:27 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:03:10 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,20 @@ Zombie::~Zombie()
     if(Name != "")
         std::cout << Name << " is destroyed" << std::endl;
     else
-        std::cout << "Heap Zombie is destroyed" << std::endl;
+        std::cout << "unkown Zombie is destroyed" << std::endl;
 }
 
 void Zombie::announce()
 {
-    std::cout <<  Name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+    if(Name != "")
+        std::cout <<  Name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+    else
+        std::cout << "unkown Zombie: BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-void Zombie::setName(std::string name)
-{
-    Name  = name;
+Zombie::Zombie(std::string name) : Name(name) {
+    if(Name != "")
+        std::cout << name << " created" << std::endl;
+    else
+        std::cout << "unkown Zombie created" << std::endl;
 }

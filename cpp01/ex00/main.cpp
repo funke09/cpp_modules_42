@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:10:33 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/20 18:42:43 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/23 03:04:17 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ int main(int ac, char **av)
         std::cout << "Usage: ./Zombie" << std::endl;
         return (1);
     }
-    Zombie *zombie = newZombie("alo");
+    Zombie *zombie = newZombie("MALLOC");
     zombie->announce();
-    randomChump("new");
-    Zombie zombie2;
-    zombie2.setName("stack zombie");
+    randomChump("FAKE");
+    Zombie zombie2; 
     zombie2.announce();
     delete zombie;
     return (0);

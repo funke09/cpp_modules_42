@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/19 22:11:52 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/02/21 02:34:10 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/02/23 19:51:18 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void Harl::complain( std::string level )
 {
-    char    str[4][10] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+    std::string    str[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
     int i = 0;
     while (i < 4)
     {
