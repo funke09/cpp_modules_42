@@ -26,7 +26,7 @@ Fixed Fixed::operator/(const Fixed &other)
 
 Fixed Fixed::operator++()
 {
-    this->FixedPoint += 1;
+    this->FixedPoint++;
     return (*this);
 }
 
@@ -34,14 +34,14 @@ Fixed Fixed::operator++(int)
 {
     Fixed temp = *this;
 
-    this->FixedPoint += 1;
+    this->FixedPoint++;
 
     return temp;
 }
 
 Fixed Fixed::operator--()
 {
-    this->FixedPoint -= 1 ;
+    this->FixedPoint-- ;
     return (*this);
 }
 
@@ -49,7 +49,7 @@ Fixed Fixed::operator--(int)
 {
     Fixed temp = *this;
 
-    this->FixedPoint -= 1;
+    this->FixedPoint--;
 
     return temp;
 }
@@ -64,22 +64,22 @@ bool Fixed::operator<(const Fixed &copy) const
     return (this->toFloat() < copy.toFloat());
 }
 
-bool Fixed::operator>=(const Fixed &copy) const
+bool Fixed::operator>=(const Fixed &copy)
 {
     return (this->toFloat() >= copy.toFloat());
 }
 
-bool Fixed::operator<=(const Fixed &copy) const
+bool Fixed::operator<=(const Fixed &copy)
 {
     return (this->toFloat() <= copy.toFloat());
 }
 
-bool Fixed::operator==(const Fixed &copy) const
+bool Fixed::operator==(const Fixed &copy)
 {
     return (this->toFloat() == copy.toFloat());
 }
 
-bool Fixed::operator!=(const Fixed &copy) const
+bool Fixed::operator!=(const Fixed &copy)
 {
     return (this->toFloat() != copy.toFloat());
 }

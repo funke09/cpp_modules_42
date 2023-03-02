@@ -25,10 +25,10 @@ class Fixed
     Fixed operator/(const Fixed &copy);
     bool operator>(const Fixed &copy) const;
     bool operator<(const Fixed &copy) const;
-    bool operator>=(const Fixed &copy) const;
-    bool operator<=(const Fixed &copy) const;
-    bool operator==(const Fixed &copy) const;
-    bool operator!=(const Fixed &copy) const;
+    bool operator>=(const Fixed &copy);
+    bool operator<=(const Fixed &copy);
+    bool operator==(const Fixed &copy);
+    bool operator!=(const Fixed &copy);
     Fixed operator++();
     Fixed operator++(int);
     Fixed operator--();
