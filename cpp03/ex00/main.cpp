@@ -4,14 +4,14 @@
 int main()
 {
     ClapTrap clap("new");
-    ClapTrap copy(clap);
+    // ClapTrap copy(clap);
 
-    clap.attack("hello");
-    clap.attack("world");
-    clap.takeDamage(0);
-    clap.takeDamage(0);
-    clap.beRepaired(0);
-
+    // clap.attack("hello");
+    // clap.attack("world");
+    // clap.takeDamage(0);
+    // clap.takeDamage(0);
+    for (int i = 0; i < 12; i++)
+        clap.takeDamage(10);
     // copy.attack("enemy");
     // copy.attack("la");
     // copy.attack("si");

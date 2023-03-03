@@ -1,6 +1,6 @@
 NAME = ClapTrap
 
-SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -8,7 +8,7 @@ CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address
 
-HEDERE = ClapTrap.hpp ScavTrap.hpp
+HEDERE = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
 $(NAME): $(OBJ)
 	$(CXX) $(OBJ) $(CXXFLAGS) -o $(NAME)

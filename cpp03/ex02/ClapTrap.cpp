@@ -3,18 +3,18 @@
 
 ClapTrap::ClapTrap(void) :
      _name("Unknown"),
-    _hitPoints(10),
-    _energyPoints(10),
-    _attackDamage(0)
+    _hitPoints(100),
+    _energyPoints(100),
+    _attackDamage(30)
 {
     std::cout << "Default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) :
     _name(name),
-    _hitPoints(10),
-    _energyPoints(10),
-    _attackDamage(0)
+    _hitPoints(100),
+    _energyPoints(100),
+    _attackDamage(30)
 {
     std::cout << "Constructor parameter" << _name << " called." << std::endl;
 }

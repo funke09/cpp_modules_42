@@ -1,30 +1,25 @@
 #include <iostream>
 #include "ClapTrap.hpp"
-
-// int main()
-// {
-//     ClapTrap clap("new");
-//     ClapTrap copy(clap);
-
-//     clap.attack("hello");
-//     clap.attack("world");
-//     clap.takeDamage(0);
-//     clap.takeDamage(0);
-//     clap.beRepaired(0);
-
-
-//     return 0;
-// }
-
 #include "ScavTrap.hpp"
 
-int main() {
-  ScavTrap scav("Claptrap");
+int main()
+{
+    ClapTrap clap("new");
+    ScavTrap test("test");
+    // ClapTrap copy(clap);
 
-  scav.attack("enemy");
-  scav.takeDamage(30);
-  scav.beRepaired(20);
-  scav.guardGate();
+    // clap.attack("hello");
+    // clap.attack("world");
+    // clap.takeDamage(0);
+    // clap.takeDamage(0);
+    test.attack("00");
+    for (int i = 0; i < 12; i++)
+        clap.takeDamage(10);
+    // copy.attack("enemy");
+    // copy.attack("la");
+    // copy.attack("si");
+    // copy.attack("me");
+    // copy.attack("to");
 
-  return 0;
+    return 0;
 }
