@@ -2,24 +2,24 @@
 
 FragTrap::FragTrap(void) 
 {
-    std::cout << "Default constructor called" << std::endl;
+    std::cout << "Default constructor FragTrap called" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name)
 {
     this->_name = name;
-    std::cout << "Constructor parameter called." << std::endl;
+    std::cout << "Constructor parameter FragTrap called." << std::endl;
 }
 
 FragTrap::FragTrap(const FragTrap& other)
 {
     *this = other;
-    std::cout << "Copy constructor called." << std::endl;
+    std::cout << "Copy constructor FragTrap called." << std::endl;
 }
 
 FragTrap::~FragTrap()
 {
-    std::cout << "Deconstructor  is destroyed!\n";
+    std::cout << "Deconstructor FragTrap is destroyed!\n";
 }
 
 void FragTrap::attack(const std::string& target)

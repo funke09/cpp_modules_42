@@ -7,7 +7,7 @@ ClapTrap::ClapTrap(void) :
     _energyPoints(10),
     _attackDamage(0)
 {
-    std::cout << "Default constructor called" << std::endl;
+    std::cout << "Default constructor ClapTrap called" << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name) :
@@ -16,18 +16,18 @@ ClapTrap::ClapTrap(std::string name) :
     _energyPoints(10),
     _attackDamage(0)
 {
-    std::cout << "Constructor parameter" << _name << " called." << std::endl;
+    std::cout << "Constructor parameter ClapTrap " << _name << " called." << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
     *this = other;
-    std::cout << "Copy constructor " << _name << " called." << std::endl;
+    std::cout << "Copy constructor ClapTrap " << _name << " called." << std::endl;
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout << "Deconstructor " << _name << " is destroyed!\n";
+    std::cout << "Deconstructor ClapTrap " << _name << " is destroyed!\n";
 }
 
 void ClapTrap::attack(const std::string& target)

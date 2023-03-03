@@ -2,24 +2,24 @@
 
 ScavTrap::ScavTrap(void) 
 {
-    std::cout << "Default constructor called" << std::endl;
+    std::cout << "Default constructor ScavTrap called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name)
 {
     this->_name = name;
-    std::cout << "Constructor parameter called." << std::endl;
+    std::cout << "Constructor parameter ScavTrap called." << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other)
 {
     *this = other;
-    std::cout << "Copy constructor called." << std::endl;
+    std::cout << "Copy constructor ScavTrap called." << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "Deconstructor  is destroyed!\n";
+    std::cout << "Deconstructor ScavTrap is destroyed!\n";
 }
 
 void ScavTrap::attack(const std::string& target)
