@@ -1,9 +1,9 @@
 NAME = Animal
 
-SRC = Animal.cpp Cat.cpp Dog.cpp main.cpp
+SRC = Animal.cpp Cat.cpp Dog.cpp main.cpp WrongAnimal.cpp WrongCat.cpp
 
 OBJ = $(SRC:.cpp=.o)
-
+HEDER = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
 FLAGS = -Wall -Wextra -Werror
 
 CC = c++
@@ -11,7 +11,7 @@ CC = c++
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) $(FLAGS) -o $(NAME)
 
-%.o: %.cpp
+%.o: %.cpp $(HEDER)
 	$(CC) $(FLAGS) -c $< -o $@
 
 all: $(NAME)
