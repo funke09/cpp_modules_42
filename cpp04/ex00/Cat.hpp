@@ -10,6 +10,7 @@ public:
     ~Cat();
     std::string getType() const;
     void makeSound() const;
+    Cat& operator=(const Cat& other);
 };
 
 #endif

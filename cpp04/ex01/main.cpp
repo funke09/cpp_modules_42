@@ -37,15 +37,25 @@
 #include "Cat.hpp"
 
 int main() {
-    Animal* animals[4];
-    animals[0] = new Dog();
-    animals[1] = new Dog();
-    animals[2] = new Cat();
-    animals[3] = new Cat();
+    // Animal* animals[] = {
+    //     new Dog(),
+    //     new Dog(),
+    //     new Cat(),
+    //     new Cat()
+    // };
+    // // animals[0] = new Dog();
+    // // animals[1] = new Dog();
+    // // animals[2] = new Cat();
+    // // animals[3] = new Cat();
 
-    for (int i = 0; i < 4; i++) {
-        animals[i]->makeSound();
-        delete animals[i];
+    // for (int i = 0; i < 4; i++) {
+    //     animals[i]->makeSound();
+    //     delete animals[i];
+    // }
+ /* Creating a Dog object called basic, then creating a Dog object called tmp, and then deleting tmp. */
+    Dog basic;
+    {
+        Dog tmp(basic);
     }
 
     return 0;

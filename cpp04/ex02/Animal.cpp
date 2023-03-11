@@ -16,8 +16,9 @@ std::string Animal::getType() const {
     return m_type;
 }
 
-void Animal::makeSound() const {
-    std::cout << "Animal sound" << std::endl;
+
+Animal::Animal(const std::string& type) : m_type(type) {
+    std::cout << "Animal constructor called!" << std::endl;
 }
 
 Animal& Animal::operator=(const Animal& other) {
