@@ -13,7 +13,7 @@ int main()
     const WrongAnimal *wrongCat = new WrongCat();
     const Animal* j = new Dog();
     const Animal* i = new Cat();
-    i->Animal::makeSound();
+    // i->Animal::makeSound();
     std::cout << wrong->getType() << " " << std::endl;
     std::cout << wrongCat->getType() << " " << std::endl;
     std::cout << j->getType() << " " << std::endl;
