@@ -73,3 +73,12 @@ std::ostream& operator<<(std::ostream& os, const AForm& form) {
        << ", is " << (form.isSigned() ? "" : "not ") << "signed.";
     return os;
 }
+
+void AForm::execute(const Bureaucrat& executor) const {
+    if (executor.getGrade() > exec_grade_) {
+        throw GradeTooLowException();
+    }
+    else if (!signed_) {
+        throw NotSignedException();
+    }
+}
