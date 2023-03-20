@@ -26,13 +26,13 @@ void ShrubberyCreationForm::execute(const Bureaucrat& executor) const {
         return;
     }
 
-    ofs << "      /\\      " << std::endl
-        << "     /  \\     " << std::endl
-        << "    /    \\    " << std::endl
-        << "   /      \\   " << std::endl
-        << "  /        \\  " << std::endl
-        << " /          \\ " << std::endl
-        << "/____________\\" << std::endl
+    ofs << "      //\\\\      " << std::endl
+        << "     //  \\\\     " << std::endl
+        << "    //    \\\\    " << std::endl
+        << "   //      \\\\   " << std::endl
+        << "  //        \\\\  " << std::endl
+        << " //          \\\\ " << std::endl
+        << "//____________\\\\" << std::endl
         << "      ||      " << std::endl
         << "      ||      " << std::endl
         << "      ||      " << std::endl;
