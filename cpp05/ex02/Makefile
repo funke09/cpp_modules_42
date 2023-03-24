@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/03/24 03:10:56 by zcherrad          #+#    #+#              #
+#    Updated: 2023/03/24 03:10:57 by zcherrad         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = a.out
 
 SRC = main.cpp Bureaucrat.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp AForm.cpp
