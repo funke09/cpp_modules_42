@@ -30,28 +30,28 @@ int main() {
     pardonForm.execute(bureaucrat);
 
     // Attempt to execute the same forms again
-    // shrubberyForm.execute(bureaucrat);
-    // robotomyForm.execute(bureaucrat);
-    // pardonForm.execute(bureaucrat);
+    shrubberyForm.execute(bureaucrat);
+    robotomyForm.execute(bureaucrat);
+    pardonForm.execute(bureaucrat);
 
     // // Create a new bureaucrat
-    // Bureaucrat bureaucrat2("Bill", 150);
+    Bureaucrat bureaucrat2("Bill", 150);
 
     // // Try to sign forms with the new bureaucrat
-    // try {
-    //     shrubberyForm.beSigned(bureaucrat2);
-    //     robotomyForm.beSigned(bureaucrat2);
-    //     pardonForm.beSigned(bureaucrat2);
-    // }
-    // catch (std::exception& e) {
-    //     std::cerr << e.what() << std::endl;
-    //     return 1;
-    // }
+    try {
+        shrubberyForm.beSigned(bureaucrat2);
+        robotomyForm.beSigned(bureaucrat2);
+        pardonForm.beSigned(bureaucrat2);
+    }
+    catch (std::exception& e) {
+        std::cerr << e.what() << std::endl;
+        return 1;
+    }
 
-    // // Try to execute forms with the new bureaucrat
-    // shrubberyForm.execute(bureaucrat2);
-    // robotomyForm.execute(bureaucrat2);
-    // pardonForm.execute(bureaucrat2);
+    // Try to execute forms with the new bureaucrat
+    shrubberyForm.execute(bureaucrat2);
+    robotomyForm.execute(bureaucrat2);
+    pardonForm.execute(bureaucrat2);
 
     return 0;
 }
