@@ -2,9 +2,13 @@
 #include <iostream>
 #include <sstream>
 #include <cmath>
+#include <sstream>
+#include <iostream>
+#include <iomanip>
 
 char ScalarConverter::convertChar(const std::string& str) {
     if (str.length() != 1) {
+        std::cout << str.length() << std::endl;
         std::cerr << "Error: invalid char literal \"" << str << "\"\n";
         return '\0';
     }
@@ -34,9 +38,10 @@ float ScalarConverter::convertFloat(const std::string& str) {
             result = 0.0f;
         }
     }
-    return result;
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(2) << result;
+    return "0." + oss.str();
 }
-
 double ScalarConverter::convertDouble(const std::string& str) {
     double result;
     std::istringstream iss(str);

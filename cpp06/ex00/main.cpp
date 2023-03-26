@@ -33,20 +33,23 @@ int main(int argc, char *argv[]) {
     try {
         char c = converter.convertChar(input);
         if (std::isprint(c)) {
-            std::cout << "'" << c << "'\n";
+            if(c == '0')
+                std::cout << "Non displayable" << std::endl;
+            else
+            std::cout << "'" << c << "'" << std::endl;
         } else {
-            std::cout << "Non displayable\n";
+            std::cout << "Non displayable" << std::endl;
         }
     } catch (std::exception &e) {
-        std::cout << "impossible\n";
+        std::cout << "impossible" << std::endl;
     }
 
     std::cout << "int: ";
     try {
         int i = converter.convertInt(input);
-        std::cout << i << "\n";
+        std::cout << i << std::endl;
     } catch (std::exception &e) {
-        std::cout << "impossible\n";
+        std::cout << "impossible" << std::endl;
     }
 
     std::cout << "float: ";
