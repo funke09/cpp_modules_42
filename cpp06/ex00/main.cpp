@@ -37,8 +37,8 @@ int main(int argc, char *argv[]) {
                 std::cout << "Non displayable" << std::endl;
             else
             std::cout << "'" << c << "'" << std::endl;
-        } else {
-            std::cout << "Non displayable" << std::endl;
+        // } else {
+        //     std::cout << "Non displayable" << std::endl;
         }
     } catch (std::exception &e) {
         std::cout << "impossible" << std::endl;
@@ -47,7 +47,8 @@ int main(int argc, char *argv[]) {
     std::cout << "int: ";
     try {
         int i = converter.convertInt(input);
-        std::cout << i << std::endl;
+        if(i != -1)
+            std::cout << i << std::endl;
     } catch (std::exception &e) {
         std::cout << "impossible" << std::endl;
     }
@@ -55,15 +56,17 @@ int main(int argc, char *argv[]) {
     std::cout << "float: ";
     try {
         float f = converter.convertFloat(input);
+        if(input == "0")
+            std::cout << "0.0f" << std::endl;
         if (f == std::numeric_limits<float>::infinity()) {
             std::cout << "+inff\n";
         } else if (f == -std::numeric_limits<float>::infinity()) {
             std::cout << "-inff\n";
         } else if (std::isnan(f)) {
             std::cout << "nanf\n";
-        } else {
-            std::cout << f << "f\n";
-        }
+        } 
+        else
+         std::cout << std::fixed << f << std::endl;
     } catch (std::exception &e) {
         std::cout << "impossible\n";
     }
@@ -71,15 +74,17 @@ int main(int argc, char *argv[]) {
     std::cout << "double: ";
     try {
         double d = converter.convertDouble(input);
+        if(input == "0")
+            std::cout << "0.0" << std::endl;
         if (d == std::numeric_limits<double>::infinity()) {
             std::cout << "+inf\n";
         } else if (d == -std::numeric_limits<double>::infinity()) {
             std::cout << "-inf\n";
         } else if (std::isnan(d)) {
             std::cout << "nan\n";
-        } else {
-            std::cout << d << "\n";
         }
+        else
+            std::cout << d << std::endl;
     } catch (std::exception &e) {
         std::cout << "impossible\n";
     }
