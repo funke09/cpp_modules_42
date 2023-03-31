@@ -1,78 +1,134 @@
-#include "ScalarConverter.hpp"
 #include <iostream>
-#include <sstream>
-#include <cmath>
-#include <sstream>
-#include <iostream>
-#include <iomanip>
-
-#include <sstream>
-#include <iostream>
-#include <iomanip>
 #include <string>
+#include <sstream>
+#include <limits>
 #include <stdexcept>
-
-float ostringstreamToFloat(std::ostringstream& oss) {
-    std::string str = oss.str();
-    std::istringstream iss(str);
-    float result;
-
-    if (!(iss >> result)) {
-        throw std::runtime_error("Failed to parse float from string: " + str);
-    }
-
-    // std::cout << result << std::endl;
-    return result;
-}
+#include <cmath>
+#include <iomanip>
 
 
-char ScalarConverter::convertChar(const std::string& str) {
-    if (str.length() != 1) {
-        std::cerr << "Error: invalid char literal \"" << str << "\"" << std::endl;
+class ScalarConverter {
+public:
+    static char toChar(const std::string& str) {
+        if(isdigit(str[0]) || (str[0] == '-' && isdigit(str[1])) || (str[0] == '+' && isdigit(str[1])))
+        {
+            int ss = std::atoi(str.c_str());
+            if (ss >= 32 && ss <= 126)
+                return static_cast<char>(ss);
+            else if(ss < 32 || ss > 126)
+                throw std::invalid_argument("Non displayable");
+        }
+        else 
+        {
+            if(str.length() == 1)
+            {
+                char c;
+                std::stringstream ss(str);
+                ss >> c;
+                if (ss.fail() || ss.eof())
+                    throw std::invalid_argument("Invalid char literalyy");
+                return static_cast<char>(c);
+            }
+            else
+                throw std::invalid_argument("Impossible");
+        }
         return '\0';
+        
     }
-    return str[0];
-}
 
-int ScalarConverter::convertInt(const std::string& str) {
-    int result;
-    std::istringstream iss(str);
-    if (!(iss >> result)) {
-        std::cerr << "Error: invalid int literal \"" << str << "\"" << std::endl;
+    static int toInt(const std::string& str) {
+        if(isdigit(str[0]) || (str[0] == '-' && isdigit(str[1])) || (str[0] == '+' && isdigit(str[1])))
+        {
+            int i = std::atoi(str.c_str());
+            return static_cast<int>(i);
+        }
         return -1;
     }
-    return result;
-}
 
+    static float toFloat(const std::string& str) {
+        if(isdigit(str[0]) || (str[0] == '-' && isdigit(str[1])) || (str[0] == '+' && isdigit(str[1])))
+        {
+            float f = std::atof(str.c_str());
+            return static_cast<float>(f);
+        }
+        if (str == "+inff" || str == "inf" || str == "+inf") {
+            return std::numeric_limits<float>::infinity();
+        } else if (str == "-inff" || str == "-inf") {
+            return -std::numeric_limits<float>::infinity();
+        } else if (str == "nanf" || str == "nan") {
+            return std::numeric_limits<float>::quiet_NaN();
+        }
+        return -1;
+    }
 
-float ScalarConverter::convertFloat(const std::string& str) {
+    static double toDouble(const std::string& str) {
+        if(isdigit(str[0]) || (str[0] == '-' && isdigit(str[1])) || (str[0] == '+' && isdigit(str[1])))
+        {
+            double d = std::strtod(str.c_str(), NULL);
+            return static_cast<double>(d);
+        }
+        if (str == "+inf" || str == "inf" || str == "+inf") {
+            return std::numeric_limits<double>::infinity();
+        } else if (str == "-inf") {
+            return -std::numeric_limits<double>::infinity();
+        } else if (str == "nan") {
+            return std::numeric_limits<double>::quiet_NaN();
+        } 
+        return -1;
+    }
 
-    float result = 0.0f;
-    std::istringstream iss(str);
-    if (!(iss >> result)) {
-        if (str == "-inff" || str == "+inff" || str == "nanf") {
-            if (str == "-inff") result = -INFINITY;
-            else if (str == "+inff") result = INFINITY;
-            else if (str == "nanf") result = NAN;
-        } else {
-            std::cerr << "Error: invalid float literal \"" << str << "\"" << std::endl;
-            result = 0.0f;
+    static void convert(const std::string& str) {
+        try {
+            std::cout << "char: " << toChar(str) << std::endl;
+        } catch (const std::invalid_argument& e) {
+            std::cout << e.what() << std::endl;
+        }
+
+        try {
+            std::cout << "int: ";
+            if(toInt(str) != -1)
+                std::cout << toInt(str) << std::endl;
+            else 
+                std::cout << "Impossible" << std::endl;
+        } catch (const std::invalid_argument& e) {
+            std::cout << e.what() << std::endl;
+        }
+
+        try {
+            std::cout << "float: ";
+            if(toFloat(str) != -1)
+                std::cout << std::setprecision(1) << std::fixed 
+                << toFloat(str) << "f" << std::endl;
+            else
+                std::cout << "Impossible" << std::endl;
+        } catch (const std::invalid_argument& e) {
+            std::cout << e.what() << std::endl;
+        }
+
+        try {
+            std::cout << "double: ";
+            if(toDouble(str) != -1)
+                std::cout << std::setprecision(1) << std::fixed 
+                << toDouble(str) << std::endl;
+            else 
+                std::cout << "Impossible" << std::endl;
+        } catch (const std::invalid_argument& e) {
+            std::cout << e.what() << std::endl;
         }
     }
-    return result;
-}
-double ScalarConverter::convertDouble(const std::string& str) {
-    double result = 0.0;
-    std::istringstream iss(str);
-    if (!(iss >> result)) {
-        if (str == "-inf" || str == "+inf" || str == "nan") {
-            if (str == "-inf") result = -INFINITY;
-            else if (str == "+inf") result = INFINITY;
-            else if (str == "nan") result = NAN;
-        } else {
-            std::cerr << "Error: invalid double literal \"" << str << std::endl;
-            result = 0.0;
-        }
+};
+
+
+
+int main(int argc, char **argv)
+{
+    if (argc != 2)
+    {
+        std::cout << "Usage: " << argv[0] << " <literal>" << std::endl;
+        return 1;
     }
-    return result;
+
+    std::string input(argv[1]);
+    ScalarConverter::convert(input);
+    return 0;
 }
