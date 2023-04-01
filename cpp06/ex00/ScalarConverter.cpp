@@ -44,7 +44,6 @@ public:
         }
         return -1;
     }
-
     static float toFloat(const std::string& str) {
         if(isdigit(str[0]) || (str[0] == '-' && isdigit(str[1])) || (str[0] == '+' && isdigit(str[1])))
         {
