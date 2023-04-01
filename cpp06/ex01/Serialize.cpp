@@ -1,55 +1,32 @@
 #include <iostream>
 #include <cstdint>
 #include "Serialize.hpp"
+#include "Data.hpp"
 
 
-class Serializer {
-public:
-    static uintptr_t serialize(Data* ptr)
+
+uintptr_t Serializer::serialize(Data* ptr)
     {
         return reinterpret_cast<uintptr_t>(ptr);
     }
-    static Data* deserialize(uintptr_t raw)
+Data* Serializer::deserialize(uintptr_t raw)
     {
         return reinterpret_cast<Data*>(raw);
     }
-};
 
-// int main() {
-//     Data data;
-//     data.number = 42;
-//     data.name = "Test";
+Serializer::Serializer(){}
 
-//     uintptr_t ptrValue = Serializer::serialize(&data);
-//     Data* deserialized = Serializer::deserialize(ptrValue);
-
-//     if (deserialized == &data) {
-//         std::cout << "Pointer deserialization succeeded!" << std::endl;
-//         std::cout << "Number: " << deserialized->number << std::endl;
-//         std::cout << "Name: " << deserialized->name << std::endl;
-//         std::cout << "Address: " << deserialized << std::endl;
-//         std::cout << "Address: " << &data << std::endl;
-
-//         std::cout << "ptrValue: "<<ptrValue << std::endl;
-//         std::cout << "ptrValue: "<<reinterpret_cast<uintptr_t>(&data) << std::endl;
-
-//     } else {
-//         std::cout << "Pointer deserialization failed!" << std::endl;
-//     }
-
-//     return 0;
-// }
-
-int main(){
-	Data data;
-	data.name = "the name";
-
-	std::cout << "first one " <<  data.name << std::endl;
-	
-	uintptr_t raw = Serializer::serialize(&data);
-
-	Data	*data2 = Serializer::deserialize(raw);
-
-	std::cout << "second one " << data2->name << std::endl;
-	return 0;
+Serializer::Serializer(const Serializer&other){
+    *this = other;
 }
+
+Serializer &Serializer::operator=(const Serializer&rhs){
+    if(this != &rhs)
+    {
+        *this = rhs;
+    }
+    return *this;
+}
+
+Serializer::~Serializer(){}
+

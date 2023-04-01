@@ -1,6 +1,6 @@
 NAME = a.out
 
-SRC = ScalarConverter.cpp
+SRC = ScalarConverter.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -13,7 +13,7 @@ $(NAME): $(OBJ)
 
 all: $(NAME)
 
-%.o: %.cpp 
+%.o: %.cpp %.hpp
 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:

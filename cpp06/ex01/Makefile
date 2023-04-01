@@ -1,6 +1,6 @@
 NAME = a.out
 
-SRC = Serialize.cpp
+SRC = Serialize.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

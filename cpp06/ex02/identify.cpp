@@ -14,11 +14,11 @@ void identify(Base* p) {
 }
 
 void identify(Base& p) {
-    if (typeid(p) == typeid(A)) {
+    if (dynamic_cast<A*>(&p) != nullptr) {
         std::cout << "A" << std::endl;
-    } else if (typeid(p) == typeid(B)) {
+    } else if (dynamic_cast<B*>(&p) != nullptr) {
         std::cout << "B" << std::endl;
-    } else if (typeid(p) == typeid(C)) {
+    } else if (dynamic_cast<C*>(&p) != nullptr) {
         std::cout << "C" << std::endl;
     }
 }
