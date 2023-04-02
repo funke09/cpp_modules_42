@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/02 22:18:14 by zcherrad          #+#    #+#             */
+/*   Updated: 2023/04/02 22:18:55 by zcherrad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -55,6 +67,20 @@ int ScalarConverter::toInt(const std::string& str) {
         int i = std::atoi(str.c_str());
         return static_cast<int>(i);
     }
+    else 
+    {
+        if(str.length() == 1)
+        {
+            char c;
+            std::stringstream ss(str);
+            ss >> c;
+            if (ss.fail() || ss.eof())
+                throw std::invalid_argument("Invalid char literalyy");
+            return static_cast<int>(c);
+        }
+        else
+            throw std::invalid_argument("Impossible");
+    }
     return -1;
 }
 float ScalarConverter::toFloat(const std::string& str) {
@@ -69,6 +95,20 @@ float ScalarConverter::toFloat(const std::string& str) {
         return -std::numeric_limits<float>::infinity();
     } else if (str == "nanf" || str == "nan") {
         return std::numeric_limits<float>::quiet_NaN();
+    }
+    else 
+    {
+        if(str.length() == 1)
+        {
+            char c;
+            std::stringstream ss(str);
+            ss >> c;
+            if (ss.fail() || ss.eof())
+                throw std::invalid_argument("Invalid char literalyy");
+            return static_cast<float>(c);
+        }
+        else
+            throw std::invalid_argument("Impossible");
     }
     return -1;
 }
@@ -85,7 +125,21 @@ double ScalarConverter::toDouble(const std::string& str) {
         return -std::numeric_limits<double>::infinity();
     } else if (str == "nan") {
         return std::numeric_limits<double>::quiet_NaN();
-    } 
+    }
+    else 
+    {
+        if(str.length() == 1)
+        {
+            char c;
+            std::stringstream ss(str);
+            ss >> c;
+            if (ss.fail() || ss.eof())
+                throw std::invalid_argument("Invalid char literalyy");
+            return static_cast<double>(c);
+        }
+        else
+            throw std::invalid_argument("Impossible");
+    }
     return -1;
 }
 

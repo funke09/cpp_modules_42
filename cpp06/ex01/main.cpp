@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/02 22:18:02 by zcherrad          #+#    #+#             */
+/*   Updated: 2023/04/02 22:18:03 by zcherrad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Data.hpp"
 #include "Serialize.hpp"
 #include <iostream>
@@ -12,8 +24,8 @@ int main() {
 
     if (deserialized == &data) {
         std::cout << "Pointer deserialization succeeded!" << std::endl;
-        std::cout << "Number: " << deserialized->number << std::endl;
         std::cout << "Name: " << deserialized->name << std::endl;
+        std::cout << "Number: " << deserialized->number << std::endl;
         std::cout << "Address deserialized: " << deserialized << std::endl;
         std::cout << "Address data: " << &data << std::endl;
 
@@ -23,7 +35,7 @@ int main() {
     } else {
         std::cout << "Pointer deserialization failed!" << std::endl;
     }
-
+    
     return 0;
 }
 
