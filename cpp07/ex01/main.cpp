@@ -1,10 +1,28 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include "iter.hpp"
+
+
+void convertToUpperCase(std::string& s) {
+    for (size_t i = 0; i < s.length(); i++) {
+        s[i] = toupper(s[i]);
+    }
+}
+
 
 template <typename T>
 void print(const T& value) {
-    std::cout << value << " ";
+    if (typeid(T) == typeid(float) || typeid(T) == typeid(double)) {
+        std::cout.precision(1);
+        std::cout.setf(std::ios::fixed);
+        if(typeid(T) == typeid(float))
+            std::cout << std::setprecision(1) << value << "f ";
+        else if(typeid(T) == typeid(double))
+            std::cout << std::setprecision(1) << value << " ";
+    }
+    else
+        std::cout << value << " ";
 }
 
 template <typename T>
@@ -28,6 +46,11 @@ int main() {
     iter(double_array, 5, print<double>);
     std::cout << std::endl;
 
+    float float_array[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f};
+    std::cout << "Original float array: ";
+    iter(float_array, 5, print<float>);
+    std::cout << std::endl;
+
     std::cout << "Squared double array: ";
     iter(double_array, 5, square<double>);
     iter(double_array, 5, print<double>);
@@ -39,9 +62,7 @@ int main() {
     std::cout << std::endl;
 
     std::cout << "Uppercase string array: ";
-    iter(string_array, 5, [](std::string& s){ 
-        for (char& c : s) c = toupper(c); 
-    });
+    iter(string_array, 5, convertToUpperCase);
     iter(string_array, 5, print<std::string>);
     std::cout << std::endl;
 
