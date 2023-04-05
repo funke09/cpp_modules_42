@@ -38,7 +38,7 @@ int main() {
     try {
         std::cout << "arr2[10]: " << arr2[10] << std::endl;
     } catch (std::exception& e) {
-        std::cout << "Exception: " << e.what() << std::endl;
+        std::cout << "Exception: out-of-bounds!"<< std::endl;
     }
 
     return 0;
