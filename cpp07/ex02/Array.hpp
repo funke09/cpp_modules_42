@@ -6,7 +6,7 @@
 /*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 21:54:49 by zcherrad          #+#    #+#             */
-/*   Updated: 2023/04/05 21:54:50 by zcherrad         ###   ########.fr       */
+/*   Updated: 2023/04/06 00:20:40 by zcherrad         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ Array<T>& Array<T>::operator=(const Array& other)
 
 template<typename T>
 Array<T>::~Array()
-{
+{        
     delete[] m_data;
 }
 
