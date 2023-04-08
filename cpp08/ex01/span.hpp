@@ -9,8 +9,7 @@ public:
     Span(unsigned int n);
     void addNumber(int num);
 
-    // template<typename Iterator>
-    // void addNumbers(Iterator begin, Iterator end);
+   void addNumbers(const std::vector<int>& numbers); 
 
     int shortestSpan() const;
     int longestSpan() const;

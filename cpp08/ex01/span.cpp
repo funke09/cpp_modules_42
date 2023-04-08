@@ -34,3 +34,11 @@ int Span::longestSpan() const {
     int max = *std::max_element(m_numbers.begin(), m_numbers.end());
     return max - min;
 }
+
+void Span::addNumbers(const std::vector<int>& numbers) {
+    if (m_numbers.size() + numbers.size() > m_size) {
+        throw std::overflow_error("Not enough space in Span");
+        // throw std::exception();
+    }
+    m_numbers.insert(m_numbers.end(), numbers.begin(), numbers.end());
+}
