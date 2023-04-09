@@ -29,9 +29,14 @@
 
 int main()
 {
-    Span sp = Span(5);
-    // sp.addNumber(6);
-    // sp.addNumber(3);
+    Span sp ;
+    try{
+        sp.addNumber(6);
+        sp.addNumber(3);
+
+    }catch (const std::exception& e) {
+        std::cerr << "Error: " << e.what() << std::endl;
+    }
     // sp.addNumber(17);
     // sp.addNumber(9);
     // sp.addNumber(11);
@@ -45,10 +50,12 @@ try {
     numbers.push_back(70);
     numbers.push_back(78);
     sp.addNumbers(numbers);
+
+    std::cout << sp.shortestSpan() << std::endl;
+    std::cout << sp.longestSpan() << std::endl;
 } catch (const std::overflow_error& e) {
     std::cerr << "Error: " << e.what() << std::endl;
 }
-    std::cout << sp.shortestSpan() << std::endl;
-    std::cout << sp.longestSpan() << std::endl;
+
     return 0;
 }
