@@ -1,31 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zcherrad <zcherrad@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/10 22:20:52 by zcherrad          #+#    #+#             */
+/*   Updated: 2023/04/10 22:20:54 by zcherrad         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "span.hpp"
 #include <iostream>
 #include <vector>
 #include <algorithm>
-
-// int main() {
-//     Span sp(5);
-//     sp.addNumber(6);
-//     sp.addNumber(3);
-//     sp.addNumber(17);
-//     sp.addNumber(9);
-//     sp.addNumber(11);
-//     std::cout << sp.shortestSpan() << std::endl;
-//     std::cout << sp.longestSpan() << std::endl;
-
-//     std::vector<int> numbers;
-//     numbers.push_back(15);
-//     numbers.push_back(8);
-//     numbers.push_back(23);
-//     numbers.push_back(4);
-//     numbers.push_back(7);
-//     sp.addNumbers(numbers.begin(), numbers.end());
-//     std::cout << sp.shortestSpan() << std::endl;
-//     std::cout << sp.longestSpan() << std::endl;
-
-//     return 0;
-// }
-
 
 int main()
 {
@@ -37,9 +25,6 @@ int main()
     }catch (const std::exception& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
-    // sp.addNumber(17);
-    // sp.addNumber(9);
-    // sp.addNumber(11);
 try {
     std::vector<int> numbers;
     numbers.push_back(15);
