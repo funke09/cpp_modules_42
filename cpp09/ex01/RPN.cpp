@@ -79,7 +79,7 @@ void	RPN::calculator(int first, int second, char operation)
 			break;
 		case '/':
 			if (second == 0)
-				throw DivisionByZero();
+				throw DivisionError();
 			stack.push(first / second);
 			break;
 	}

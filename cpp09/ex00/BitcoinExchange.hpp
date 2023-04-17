@@ -9,10 +9,10 @@
 class BitcoinExchange
 {
 	public:
-		BitcoinExchange(void);
+		BitcoinExchange();
 		BitcoinExchange(const std::string& File);
 		BitcoinExchange(const BitcoinExchange& obj);
-		~BitcoinExchange(void);
+		~BitcoinExchange();
 
 		BitcoinExchange&	operator=(const BitcoinExchange& obj);
 

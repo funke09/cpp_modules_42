@@ -5,33 +5,33 @@ PmergeMe::PmergeMe(void) : size(0), sorted(false)
 	return ;
 }
 
-PmergeMe::PmergeMe(int argc, char **argv) : size(argc - 1), sorted(false)
+PmergeMe::PmergeMe(int ac, char **av) : size(ac - 1), sorted(false)
 {
-	vector = _parseArgsVector(argc,argv);
-	_verifyDuplicates();
-	deque = _parseArgsDeque(argc,argv);
+	vector = parseArgsVector(ac,av);
+	isDuplicates();
+	deque = parseArgsDeque(ac,av);
 
-	_printBeforeAfter();
+	print();
 
-	double tBegin = _getTime();
-	_mergeInsertSort(vector);
-	TimeVector = _deltaTime(tBegin);
+	double tBegin = getTime();
+	Sort(vector);
+	TimeVector = Timer(tBegin);
 
-	tBegin = _getTime();
-	_mergeInsertSort(deque);
-	TimeDeque = _deltaTime(tBegin);
+	tBegin = getTime();
+	Sort(deque);
+	TimeDeque = Timer(tBegin);
 
 	sorted = true;
-	_printBeforeAfter();
+	print();
 
-	_printTime("vector");
-	_printTime("deque");
+	printTime("vector");
+	printTime("deque");
 	return ;
 }
 
-PmergeMe::PmergeMe(const PmergeMe& obj)
+PmergeMe::PmergeMe(const PmergeMe& object)
 {
-	*this = obj;
+	*this = object;
 	return ;
 }
 
@@ -40,96 +40,86 @@ PmergeMe::~PmergeMe(void)
 	return ;
 }
 
-PmergeMe& PmergeMe::operator=(const PmergeMe& obj)
+PmergeMe& PmergeMe::operator=(const PmergeMe& object)
 {
-	if (this != &obj)
+	if (this != &object)
 	{
-		this->size = obj.size;
-		this->sorted = obj.sorted;
-		this->vector = obj.vector;
-		this->deque = obj.deque;
-		this->TimeVector = obj.TimeVector;
-		this->TimeDeque = obj.TimeDeque;
+		this->vector = object.vector;
+		this->deque = object.deque;
+		this->size = object.size;
+		this->sorted = object.sorted;
+		this->TimeDeque = object.TimeDeque;
+		this->TimeVector = object.TimeVector;
 	}
 	return (*this);
 }
 
-std::ostream&	operator<<(std::ostream& o, const PmergeMe& i)
+std::ostream&	operator<<(std::ostream& out, const PmergeMe& Pmerg)
 {
-	o 
-		<< "Vector delta time: " << i.getVectorTime() << std::endl
-		<< "Deque delta time: " << i.getDequeTime();
-	return o;
+	out 
+		<< "Vector time: " << Pmerg.getVectorTime() << std::endl
+		<< "Deque time: " << Pmerg.getDequeTime();
+	return out;
 }
 
-/*
-** Getters
-*/
 
-double	PmergeMe::getVectorTime(void) const
+double	PmergeMe::getVectorTime() const
 {
 	return (this->TimeVector);
 }
-double	PmergeMe::getDequeTime(void) const
+double	PmergeMe::getDequeTime() const
 {
 	return (this->TimeDeque);
 }
 
-/*
-** Parse and verify input
-*/
-
-std::vector<int> PmergeMe::_parseArgsVector(int argc, char **argv)
+std::vector<int> PmergeMe::parseArgsVector(int ac, char **av)
 {
 	std::vector<int>	args;
-	for (int i = 1; i < argc; ++i)
+	for (int i = 1; i < ac; ++i)
 	{
-		std::string arg = argv[i];
+		std::string arg = av[i];
 		int value = atoi(arg.c_str());
 		if (value <= 0)
-			throw invalidArgumentError();
+			throw ArgumentError();
 		args.push_back(value);
 	}
 	return (args);
 }
 
-std::deque<int> PmergeMe::_parseArgsDeque(int argc, char **argv)
+std::deque<int> PmergeMe::parseArgsDeque(int ac, char **av)
 {
 	std::deque<int>	args;
-	for (int i = 1; i < argc; ++i)
+	for (int i = 1; i < ac; ++i)
 	{
-		std::string arg = argv[i];
+		std::string arg = av[i];
 		int value = atoi(arg.c_str());
 		if (value <= 0)
-			throw invalidArgumentError();
+			throw ArgumentError();
 		args.push_back(value);
 	}
 	return (args);
 }
 
-void PmergeMe::_verifyDuplicates(void)
+void PmergeMe::isDuplicates()
 {
-	std::set<int> numSet;
+	std::set<int> numberSet;
 	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); ++it) {
-		int num = *it;
-		if (numSet.find(num) != numSet.end())
+		int number = *it;
+		if (numberSet.find(number) != numberSet.end())
 			throw duplicatesError();
-		numSet.insert(num);
+		numberSet.insert(number);
 	}
 }
 
-/*
-** Sort
-*/
 
 template <typename T>
-void	PmergeMe::_mergeInsertSort(T& container)
+void	PmergeMe::Sort(T& container)
 {
-	const int threshold = 16;
+	const int begin = 16;
 	const int size = container.size();
 	if (size < 2)
 		return ;
-	if (size < threshold)
+	if (size < begin)
 	{
 		for (typename T::iterator i = container.begin(); i != container.end(); ++i)
 		{
@@ -142,15 +132,15 @@ void	PmergeMe::_mergeInsertSort(T& container)
 		}
 		return ;
 	}
-	typename T::iterator middle = container.begin() + size / 2;
-	T left(container.begin(), middle);
-	T right(middle, container.end());
-	_mergeInsertSort(left);
-	_mergeInsertSort(right);
-	typename T::iterator i = left.begin();
-	typename T::iterator j = right.begin();
+	typename T::iterator tmp = container.begin() + size / 2;
+	T prev(container.begin(), tmp);
+	T next(tmp, container.end());
+	Sort(prev);
+	Sort(next);
+	typename T::iterator i = prev.begin();
+	typename T::iterator j = next.begin();
 	typename T::iterator k = container.begin();
-	while (i != left.end() && j != right.end())
+	while (i != prev.end() && j != next.end())
 	{
 		if (*i < *j)
 		{
@@ -164,13 +154,13 @@ void	PmergeMe::_mergeInsertSort(T& container)
 		}
 		++k;
 	}
-	while (i != left.end())
+	while (i != prev.end())
 	{
 		*k = *i;
 		++i;
 		++k;
 	}
-	while (j != right.end())
+	while (j != next.end())
 	{
 		*k = *j;
 		++j;
@@ -178,11 +168,7 @@ void	PmergeMe::_mergeInsertSort(T& container)
 	}
 }
 
-/*
-** Manage time
-*/
-
-double	PmergeMe::_getTime(void)
+double	PmergeMe::getTime(void)
 {
 	struct timeval	time;
 
@@ -190,18 +176,14 @@ double	PmergeMe::_getTime(void)
 	return ((time.tv_sec * 1000) + (time.tv_usec * 0.001));
 }
 
-double	PmergeMe::_deltaTime(long long time)
+double	PmergeMe::Timer(long long time)
 {
 	if (time > 0)
-		return (_getTime() - time);
+		return (getTime() - time);
 	return (0);
 }
 
-/*
-** Printers
-*/
-
-void	PmergeMe::_printBeforeAfter(void)
+void	PmergeMe::print(void)
 {
 	if (sorted == false)
 		std::cout << "Before: ";
@@ -217,17 +199,17 @@ void	PmergeMe::_printBeforeAfter(void)
 	std::cout << std::endl;
 }
 
-void	PmergeMe::_printTime(std::string vectorDeque) const
+void	PmergeMe::printTime(std::string vectorDeque) const
 {
-	double delta;
+	double currentTime;
 	if (vectorDeque == "vector")
-		delta = TimeVector;
+		currentTime = TimeVector;
 	else if (vectorDeque == "deque")
-		delta = TimeDeque;
+		currentTime = TimeDeque;
 	else
-		throw containerTypeError();
+		throw containerError();
 	std::cout 
 		<< "Time to process a range of " << size 
 		<< " elements with std::" << vectorDeque << ": "
-		<< std::fixed << std::setprecision(5) << delta << " ms" << std::endl;
+		<< std::fixed << std::setprecision(5) << currentTime << " ms" << std::endl;
 }

@@ -30,28 +30,25 @@ class PmergeMe
 		double				TimeVector;
 		double				TimeDeque;
 
-		std::vector<int>	_parseArgsVector(int argc, char **argv);
-		std::deque<int>		_parseArgsDeque(int argc, char **argv);
+		std::vector<int>	parseArgsVector(int argc, char **argv);
+		std::deque<int>		parseArgsDeque(int argc, char **argv);
 
-		void				_verifyDuplicates(void);
+		void				isDuplicates(void);
 
-		void				_printBeforeAfter(void);
-		void				_printTime(std::string vectorDeque) const;
+		void				print(void);
+		void				printTime(std::string vectorDeque) const;
 
 		template <typename T>
-		void				_mergeInsertSort(T& container);
+		void				Sort(T& container);
 	
-		double				_getTime(void);
-		double				_deltaTime(long long time);
-
-	protected:
-
-		class invalidArgumentError : public std::exception
+		double				getTime(void);
+		double				Timer(long long time);
+		class ArgumentError : public std::exception
 		{
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("[Error]: invalid argument");
+					return ("Error: invalid argument");
 				}
 		};
 
@@ -64,16 +61,16 @@ class PmergeMe
 				}
 		};
 
-		class containerTypeError : public std::exception
+		class containerError : public std::exception
 		{
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("[Error]: container choosen to print is not vector or deque");
+					return ("Error: the container choosen is not vector or deque");
 				}
 		};
 };
 
-std::ostream&	operator<<(std::ostream& o, const PmergeMe& i);
+std::ostream&	operator<<(std::ostream& out, const PmergeMe& Pmerg);
 
 #endif

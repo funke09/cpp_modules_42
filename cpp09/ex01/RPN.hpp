@@ -11,16 +11,16 @@ class RPN
 {
 	public:
 		RPN();
-		RPN(const RPN& obj);
+		RPN(const RPN& object);
 		~RPN();
-		RPN&	operator=(const RPN& obj);
+		RPN&	operator=(const RPN& object);
 
 
 		void	ReversePolishNotation(const std::string &RPN);
 		bool	isOperator(char c);
 		void	calculator(int first, int second, char operation);
 
-		int		getResult(void) const;
+		int		getResult() const;
 
 	private:
 		std::stack<int> stack;
@@ -52,7 +52,7 @@ class RPN
 				}
 		};
 
-		class DivisionByZero : public std::exception
+		class DivisionError : public std::exception
 		{
 			public:
 				virtual const char* what() const throw()

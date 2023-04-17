@@ -1,7 +1,7 @@
 #include "BitcoinExchange.hpp"
-#include <iostream> //cout
-#include <fstream> //ifstrem
-#include <sstream> //stringstream
+#include <iostream>
+#include <fstream> 
+#include <sstream> 
 
 int main(int ac, char** av)
 {
