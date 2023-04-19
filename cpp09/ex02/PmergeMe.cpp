@@ -7,6 +7,13 @@ PmergeMe::PmergeMe(void) : size(0), sorted(false)
 
 PmergeMe::PmergeMe(int ac, char **av) : size(ac - 1), sorted(false)
 {
+      for(int i=1; i<ac; i++) {
+        for(int j=0; av[i][j]!='\0'; j++) {
+            if(!isdigit(av[i][j]) && av[i][j] != '+') {
+                throw std::invalid_argument("Invalid argument: all arguments must be numbers.");
+            }
+        }
+    }
 	vector = parseArgsVector(ac,av);
 	isDuplicates();
 	deque = parseArgsDeque(ac,av);
