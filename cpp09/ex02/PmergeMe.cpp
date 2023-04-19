@@ -79,7 +79,7 @@ std::vector<int> PmergeMe::parseArgsVector(int ac, char **av)
 	{
 		std::string arg = av[i];
 		int value = atoi(arg.c_str());
-		if (value <= 0)
+		if (value < 0)
 			throw ArgumentError();
 		args.push_back(value);
 	}
@@ -93,7 +93,7 @@ std::deque<int> PmergeMe::parseArgsDeque(int ac, char **av)
 	{
 		std::string arg = av[i];
 		int value = atoi(arg.c_str());
-		if (value <= 0)
+		if (value < 0)
 			throw ArgumentError();
 		args.push_back(value);
 	}
