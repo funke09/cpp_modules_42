@@ -52,16 +52,16 @@ class PmergeMe
 				}
 		};
 
-		class duplicatesError : public std::exception
+		class DuplicatesError : public std::exception
 		{
 			public:
 				virtual const char* what() const throw()
 				{
-					return ("[Error]: duplicates are forbidden");
+					return ("Error: duplicates not allowed");
 				}
 		};
 
-		class containerError : public std::exception
+		class ContainerError : public std::exception
 		{
 			public:
 				virtual const char* what() const throw()

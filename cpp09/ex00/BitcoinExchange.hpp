@@ -19,9 +19,8 @@ class BitcoinExchange
 		float getExchangeRate(const std::string& date, float value) const;
 
 	private:
-		bool	isValidDate(const std::string& date) const;
-
 		std::map<std::string, float> ExchangeRates;
+
 		class RuntimeError : public std::exception
 		{
 			public:
@@ -66,6 +65,7 @@ class BitcoinExchange
 					return ("Error: invalid date.");
 				}
 		};
+		bool	isValidDate(const std::string& date) const;
 };
 
 

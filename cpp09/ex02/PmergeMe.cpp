@@ -106,7 +106,7 @@ void PmergeMe::isDuplicates()
 	for (std::vector<int>::iterator it = vector.begin(); it != vector.end(); ++it) {
 		int number = *it;
 		if (numberSet.find(number) != numberSet.end())
-			throw duplicatesError();
+			throw DuplicatesError();
 		numberSet.insert(number);
 	}
 }
@@ -207,9 +207,8 @@ void	PmergeMe::printTime(std::string vectorDeque) const
 	else if (vectorDeque == "deque")
 		currentTime = TimeDeque;
 	else
-		throw containerError();
-	std::cout 
-		<< "Time to process a range of " << size 
+		throw ContainerError();
+	std::cout << "Time to process a range of " << size 
 		<< " elements with std::" << vectorDeque << ": "
 		<< std::fixed << std::setprecision(5) << currentTime << " ms" << std::endl;
 }
