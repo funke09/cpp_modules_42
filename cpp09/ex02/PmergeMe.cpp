@@ -10,7 +10,7 @@ PmergeMe::PmergeMe(int ac, char **av) : size(ac - 1), sorted(false)
       for(int i=1; i<ac; i++) {
         for(int j=0; av[i][j]!='\0'; j++) {
             if(!isdigit(av[i][j]) && av[i][j] != '+') {
-                throw std::invalid_argument("Invalid argument: all arguments must be numbers.");
+                throw std::invalid_argument("Invalid argument: all arguments must be a positive numbers.");
             }
         }
     }
@@ -215,7 +215,6 @@ void	PmergeMe::printTime(std::string vectorDeque) const
 		currentTime = TimeDeque;
 	else
 		throw ContainerError();
-	std::cout << "Time to process a range of " << size 
-		<< " elements with std::" << vectorDeque << ": "
+	std::cout << "Time to process a range of " << size << " elements with std::" << vectorDeque << ": "
 		<< std::fixed << std::setprecision(5) << currentTime << " ms" << std::endl;
 }
